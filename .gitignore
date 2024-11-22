@@ -1,0 +1,11 @@
+#debug
+*.plist
+
+# binaries
+*.a
+*.o
+*.out
+
+# scam
+.DS_Store
+.vscode/
