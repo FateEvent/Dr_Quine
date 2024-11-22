@@ -7,4 +7,5 @@ It takes inspiration by Willard Van Orman Quine, who enunciated the [paradox tha
 
 > In general, the method used to create a quine in any programming language is to have, within the program, two pieces: (a) code used to do the actual printing and (b) data that represents the textual form of the code. The code functions by using the data to print the code (which makes sense since the data represents the textual form of the code), but it also uses the data, processed in a simple way, to print the textual representation of the data itself.
 
-[Here](https://stackoverflow.com/questions/60212717/quine-program-example-in-c) are some explanations about a quine in C.
+[Here](https://stackoverflow.com/questions/60212717/quine-program-example-in-c) are some explanations about a quine in C, and [here](https://gcc.gnu.org/onlinedocs/cpp/Macros.html) may be found the GNU documentation about macros.
+

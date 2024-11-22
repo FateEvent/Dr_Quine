@@ -9,3 +9,12 @@
 # scam
 .DS_Store
 .vscode/
+
+# executables
+Colleen
+!Colleen/
+Grace
+Sully
+
+# temporary files
+tmp_*
