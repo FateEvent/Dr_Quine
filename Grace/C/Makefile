@@ -1,6 +1,7 @@
-SRCS = Colleen.c
+SRCS = Grace.c
 OBJS = ${SRCS:.c=.o}
 NAME = Grace
+TMP = ${NAME}_kid.c
 
 CC = clang
 CFLAGS = -Wall -Wextra -Werror
@@ -15,10 +16,10 @@ ${NAME}:	${OBJS}
 
 exec:		all
 			./${NAME}
-			diff ${NAME}.c ${NAME}_kid.c
+			diff ${TMP} ${SRCS}
 
 clean:
-			rm -f ${OBJS}
+			rm -f ${OBJS} ${TMP}
 
 fclean:		clean
 			rm -f ${NAME}
