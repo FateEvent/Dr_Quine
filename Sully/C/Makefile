@@ -2,7 +2,7 @@ NAME = Sully
 
 SRCS = ${NAME}.c
 OBJS = ${SRCS:.c=.o}
-TMP = ${wildcard ${NAME}_*.c}
+TMP = ${NAME}_*
 
 CC = clang
 CFLAGS = -Wall -Wextra -Werror
@@ -17,7 +17,7 @@ ${NAME}:	${OBJS}
 
 exec:		all
 			./${NAME}
-#			diff ${TMP} ${SRCS}
+			diff ${SRCS} ${NAME}_5.c
 
 clean:
 			rm -f ${OBJS} ${TMP}
