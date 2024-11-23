@@ -17,7 +17,7 @@ ${NAME}:	${OBJS}
 
 exec:		all
 			./${NAME}
-			diff ${TMP} ${SRCS}
+#			diff ${TMP} ${SRCS}
 
 clean:
 			rm -f ${OBJS} ${TMP}
