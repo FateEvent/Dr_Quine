@@ -1,8 +1,8 @@
-NAME = Colleen
+NAME = Sully
 
 SRCS = ${NAME}.c
 OBJS = ${SRCS:.c=.o}
-TMP = tmp_${NAME}
+TMP = ${wildcard ${NAME}_*.c}
 
 CC = clang
 CFLAGS = -Wall -Wextra -Werror
@@ -16,7 +16,7 @@ ${NAME}:	${OBJS}
 			$(CC) $(CFLAGS) ${OBJS} -o ${NAME}
 
 exec:		all
-			./${NAME} > ${TMP}
+			./${NAME}
 			diff ${TMP} ${SRCS}
 
 clean:

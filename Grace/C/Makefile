@@ -1,6 +1,7 @@
-SRCS = Grace.c
-OBJS = ${SRCS:.c=.o}
 NAME = Grace
+
+SRCS = ${NAME}.c
+OBJS = ${SRCS:.c=.o}
 TMP = ${NAME}_kid.c
 
 CC = clang

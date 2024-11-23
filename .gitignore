@@ -19,5 +19,5 @@ Sully
 !Sully/
 
 # temporary files and trash
-tmp_*
-Grace_kid.c
+tmp*
+*_kid.c
