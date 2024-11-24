@@ -2,6 +2,7 @@ NAME = Colleen
 
 SRCS = ${NAME}.s
 OBJS = ${SRCS:.s=.o}
+TMP = tmp_${NAME}
 
 NASM = nasm
 CC = gcc
@@ -21,6 +22,10 @@ debug:		all
 
 ${NAME}:	${OBJS}
 			${CC} ${LINKER_FLAGS} -o $@ $^
+
+exec:		all
+			./${NAME} > ${TMP}
+			diff ${TMP} ${SRCS}
 
 clean:
 			rm -f ${OBJS}

@@ -72,14 +72,18 @@ main:
 
 section .data
 string:	db "fighters", 0
-fmt: 	db "Hello, %s!", 10, 0	; note the newline (10) and null (0) at the end
+fmt: 	db "Hello, %s!", 10, 9, "Hello, worlds!", 10, 0	; note the newline (10) and null (0) at the end
 ```
 as we can see:
 ```sh
-faventur@k2r4p2:Colleen/ASM ‹main*›$ make && ./Colleen
+faventur@k2r4p2:Colleen/ASM ‹main›$ make && ./Colleen
 nasm -f elf64 Colleen.s -o Colleen.o
 gcc -m64 -o Colleen Colleen.o
 Hello, fighters!
+		Hello, worlds!
 ```
 
 It's important to have a `0` (or NULL character) at the end of strings.
+
+Here are the registers in the order used for function parameters:
+rdi, rsi, rdx, rcx, r8, r9, r10.
