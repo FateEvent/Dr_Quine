@@ -17,7 +17,7 @@ ${NAME}:	${OBJS}
 
 exec:		all
 			./${NAME}
-			diff ${SRCS} ${NAME}_5.c
+			diff ${SRCS} ${NAME}_4.c
 
 clean:
 			rm -f ${OBJS} ${TMP}
