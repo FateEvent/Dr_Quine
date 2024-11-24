@@ -8,17 +8,11 @@ NASM = nasm
 CC = gcc
 NASM_FLAGS = -f elf64
 LINKER_FLAGS = -m64
-# CFLAGS = -Wall -Wextra -Werror
-ASM_DEBUG_FLAGS = -g
 
 .s.o:
 			$(NASM) $(NASM_FLAGS) $< -o ${<:.s=.o}
 
 all:		${NAME}
-
-debug:		NASM_FLAGS += $(ASM_DEBUG_FLAGS)
-debug:		all
-
 
 ${NAME}:	${OBJS}
 			${CC} ${LINKER_FLAGS} -o $@ $^
@@ -28,7 +22,7 @@ exec:		all
 			diff ${TMP} ${SRCS}
 
 clean:
-			rm -f ${OBJS}
+			rm -f ${OBJS} ${TMP}
 
 fclean:		clean
 			rm -f ${NAME}
