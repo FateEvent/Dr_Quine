@@ -2,7 +2,7 @@ NAME = Grace
 
 SRCS = ${NAME}.s
 OBJS = ${SRCS:.s=.o}
-TMP = ${NAME}_kid.c
+TMP = ${NAME}_kid.s
 
 NASM = nasm
 CC = gcc

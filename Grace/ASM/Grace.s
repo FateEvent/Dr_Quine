@@ -1,12 +1,14 @@
+; Non plus ultra.
+
 global main, print
 extern fopen, fprintf, fclose
 
-; Never lose hope, be persistent and stubborn and never give up. There are
-; many instances in history where apparent losers suddenly turn out to be
-; winners unexpectedly, so you should never conclude all hope is lost.
-; Ted Kaczynski
+; Per me si va ne la città dolente,
+; per me si va ne l'etterno dolore,
+; per me si va tra la perduta gente.
+;	Dante (inferno, canto III)
 
-%define FORMAT "global main%2$cglobal print%2$cextern fopen%2$cextern printf%2$c%2$c; Never lose hope, be persistent and stubborn and never give up. There are%2$c; many instances in history where apparent losers suddenly turn out to be%2$c; winners unexpectedly, so you should never conclude all hope is lost.%2$c; Ted Kaczynski%2$c%2$c%%define FORMAT %4$c%1$s%4$c%2$c%2$c   section .data%2$cfmt:%2$c%3$cdb FORMAT%2$c%2$csection .text  %2$c%2$cprint:%2$c%3$cpush rbp%2$c%3$cmov rbp, rsp%2$c%3$clea rdi, [rel fmt]%3$c%3$c; RIP-relative addressing for string%2$c%3$clea rsi, [rel fmt]%2$c%3$cmov rdx, 10%2$c%3$cmov rcx, 9%2$c%3$cmov r8, 34%2$c%3$cxor rax, rax%2$c%3$ccall fprintf WRT ..plt%2$c%3$cleave%2$c%3$cret%2$c%2$cmain:%2$c%3$cpush rbp%2$c%3$cmov rbp, rsp%2$c%3$ccall print%2$c%3$cleave%2$c%3$cret%2$c%2$csection .data%2$c, FORMAT, 0", 0
+%define FORMAT "; Non plus ultra.%2$c%2$cglobal main, print%2$cextern fopen, fprintf, fclose%2$c%2$c; Per me si va ne la città dolente,%2$c; per me si va ne l'etterno dolore,%2$c; per me si va tra la perduta gente.%2$c;%3$cDante (inferno, canto III)%2$c%2$c%%define FORMAT %4$c%1$s%4$c%2$c%%define FILENAME %4$c./Grace_kid.s%4$c%2$c%%define DATA section .data%2$c%2$csection .text%2$c%2$c%%macro SAVE 2%2$c%3$cpush %%1%2$c%3$cpush %%2%2$c%%endmacro%2$c%2$c%%macro GET 2%2$c%3$cpop %%1%2$c%3$cpop %%2%2$c%%endmacro%2$c%2$c%%macro grace 0%2$c%3$copen_fct%2$c%3$cprint_fct%2$c%3$cmain_fct%2$c%%endmacro%2$c%2$c%%macro open_fct 0%2$copen:%2$c%3$cpush rbp%2$c%3$cmov rbp, rsp%2$c%3$clea rdi, [rel filename]%2$c%3$clea rsi, [rel mode]%2$c%3$ccall fopen WRT ..plt%2$c%3$cleave%2$c%3$cret%2$c%%endmacro%2$c%2$c%%macro print_fct 0%2$cprint:%2$c%3$cpush rbp%2$c%3$cmov rbp, rsp%2$c%3$cpush rdi%2$c%3$cmov rdi, rax%2$c%3$cpush rax%2$c%3$clea rsi, [rel fmt]%2$c%3$clea rdx, [rel fmt]%2$c%3$cmov rcx, 10%2$c%3$cmov r8, 9%2$c%3$cmov r9, 34%2$c%3$cxor rax, rax%2$c%3$ccall fprintf WRT ..plt%2$c%3$cpop rdi%2$c%3$cleave%2$c%3$cret%2$c%%endmacro%2$c%2$c%%macro main_fct 0%2$cmain:%2$c%3$cpush rbp%2$c%3$cmov rbp, rsp%2$c%3$cSAVE rdi, rsi%2$c%3$ccall open%2$c%3$cGET rsi, rdi%2$c%3$ccmp rax, 0%2$c%3$cje .end%2$c%3$ccall print%2$c%3$ccall fclose WRT ..plt%2$c%3$cleave%2$c%3$cret%2$c.end:%2$c%3$cleave%2$c%3$cret%2$c%%endmacro%2$c%2$c%3$cgrace%2$c%2$cDATA%2$cfmt:%2$c%3$cdb FORMAT, 0%2$cfilename:%2$c%3$cdb FILENAME, 0%2$cmode:%2$c%3$cdb %4$cw%4$c, 0"
 %define FILENAME "./Grace_kid.s"
 %define DATA section .data
 
