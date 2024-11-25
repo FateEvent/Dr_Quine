@@ -102,6 +102,8 @@ var:
 
 ### Rust!
 
-To start, I gave a look at two examples of quine that may be found [here](https://www.reddit.com/r/rust/comments/iocgex/i_made_a_rust_quine) and [here](https://users.rust-lang.org/t/making-quines-in-rust/112993).
+To start, I gave a look at two interesting examples of quine programs ([here](https://www.reddit.com/r/rust/comments/iocgex/i_made_a_rust_quine) and [here](https://users.rust-lang.org/t/making-quines-in-rust/112993)).
 
 I used the [debug trait](https://stackoverflow.com/questions/38157335/what-does-mean-in-a-rust-format-string) `{0:?}` to print my string, the number before the `:` designating for `println!` the index of the argument to print.
+
+To [write a formatted string into a file](https://stackoverflow.com/questions/32472495/how-do-i-write-a-formatted-string-to-a-file).
