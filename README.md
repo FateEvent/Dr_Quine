@@ -87,3 +87,5 @@ It's important to have a `0` (or NULL character) at the end of strings.
 
 Here are the registers in the order used for function parameters:
 rdi, rsi, rdx, rcx, r8, r9, r10.
+
+To call `fprintf`, I followed the tips given in [this StackOverflow page](https://stackoverflow.com/questions/53948710/how-to-call-fprintf-function-in-assembly-code).
