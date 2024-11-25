@@ -85,7 +85,23 @@ Hello, fighters!
 
 It's important to have a `0` (or NULL character) at the end of strings.
 
+The [`lea reg, [rel symbol]` instruction](https://stackoverflow.com/questions/31234395/why-use-rip-relative-addressing-in-nasm) is used because it can access RIP at run-time, and from there calculate the offset of the string, contrarily to `mov`, that takes an address and dereferences it.
+
 Here are the [registers](http://6.s081.scripts.mit.edu/sp18/x86-64-architecture-guide.html) in the order used for function parameters:
 rdi, rsi, rdx, rcx, r8, r9.
 
 To call `fprintf`, I followed the tips given in [this StackOverflow page](https://stackoverflow.com/questions/53948710/how-to-call-fprintf-function-in-assembly-code).
+
+How do we declare a [global variable in ASM](https://stackoverflow.com/questions/39332641/global-variable-assembly)?
+```asm
+section .text
+global var
+var:
+	dd 0
+```
+
+### Rust!
+
+To start, I gave a look at two examples of quine that may be found [here](https://www.reddit.com/r/rust/comments/iocgex/i_made_a_rust_quine) and [here](https://users.rust-lang.org/t/making-quines-in-rust/112993).
+
+I used the [debug trait](https://stackoverflow.com/questions/38157335/what-does-mean-in-a-rust-format-string) `{0:?}` to print my string, the number before the `:` designating for `println!` the index of the argument to print.
