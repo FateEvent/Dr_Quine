@@ -21,4 +21,4 @@ Sully
 # temporary files and trash
 tmp*
 *_kid.*
-Sully*
+Sully_*
