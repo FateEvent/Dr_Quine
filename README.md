@@ -106,4 +106,6 @@ To start, I gave a look at two interesting examples of quine programs ([here](ht
 
 I used the [debug trait](https://stackoverflow.com/questions/38157335/what-does-mean-in-a-rust-format-string) `{0:?}` to print my string, the number before the `:` designating for `println!` the index of the argument to print.
 
-To [write a formatted string into a file](https://stackoverflow.com/questions/32472495/how-do-i-write-a-formatted-string-to-a-file).
+I used [`write_fmt`](https://doc.rust-lang.org/std/io/trait.Write.html#method.write_fmt) to [write a formatted string into a file](https://stackoverflow.com/questions/32472495/how-do-i-write-a-formatted-string-to-a-file).
+
+On Rust, we can also [run command](https://doc.rust-lang.org/std/process/struct.Command.html). And that's pretty cool!
