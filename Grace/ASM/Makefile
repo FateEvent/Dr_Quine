@@ -10,7 +10,7 @@ NASM_FLAGS = -f elf64
 LINKER_FLAGS = -m64
 
 .s.o:
-			$(NASM) -g $(NASM_FLAGS) $< -o ${<:.s=.o}
+			$(NASM) $(NASM_FLAGS) $< -o ${<:.s=.o}
 
 all:		${NAME}
 

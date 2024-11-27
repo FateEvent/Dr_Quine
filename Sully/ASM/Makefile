@@ -18,8 +18,8 @@ ${NAME}:	${OBJS}
 			${CC} ${LINKER_FLAGS} -o $@ $^
 
 exec:		all
-			./${NAME}
-			diff ${SRCS} ${NAME}_4.s
+			lldb ${NAME}
+#			diff ${SRCS} ${NAME}_4.s
 
 clean:
 			rm -f ${OBJS} ${TMP}
