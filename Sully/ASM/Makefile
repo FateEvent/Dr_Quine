@@ -18,7 +18,7 @@ ${NAME}:	${OBJS}
 			${CC} ${LINKER_FLAGS} -o $@ $^
 
 exec:		all
-			lldb ./${NAME}
+			./${NAME}
 #			diff ${SRCS} ${NAME}_4.s
 
 clean:
