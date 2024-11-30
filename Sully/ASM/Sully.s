@@ -1,5 +1,5 @@
-global main, print
-extern fopen, fprintf, sprintf, fclose
+global main, print, cmd_fct
+extern fopen, fprintf, sprintf, fclose, system
 
 ; "¡Aquí no se rinde nadie, carajo!"
 ; Camilo Cienfuegos
@@ -15,12 +15,6 @@ push %2
 %macro GET 2
 pop %1
 pop %2
-%endmacro
-
-%macro sully 0
-open_fct
-print_fct
-main_fct
 %endmacro
 
 %macro open_fct 0
@@ -53,6 +47,20 @@ mov r9, r12
 xor rax, rax
 call fprintf WRT ..plt
 pop rdi
+leave
+ret
+%endmacro
+
+%macro cmd_fct 0
+create_command:
+push rbp
+mov rbp, rsp
+lea rdi, [rel command]
+lea rsi, [rel command_fmt]
+mov rdx, r12
+call sprintf WRT ..plt
+mov rdi, rax
+call system WRT ..plt
 leave
 ret
 %endmacro
@@ -93,11 +101,23 @@ cmp rax, 0
 je .end
 call print
 call fclose WRT ..plt
+SAVE rdi, rsi
+SAVE rdx, rcx
+call create_command
+GET rcx, rdx
+GET rsi, rdi
 leave
 ret
 .end:
 leave
 ret
+%endmacro
+
+%macro sully 0
+open_fct
+print_fct
+cmd_fct
+main_fct
 %endmacro
 
 section .text
@@ -111,5 +131,5 @@ filename_fmt: db "Sully_%d.s", 0
 mode: db "w", 0
 number: dq 5
 filepath: db "Sully_5.s", 0
-OBJ_TEMPLATE: db "Sully_%d.o", 0
-EXEC_TEMPLATE: db "Sully_%d", 0
+command: times 100 db 0
+command_fmt: db "nasm -f elf64 Sully_%1$d.s -o Sully_%1$d.o && chmod +x Sully_%1$d && ./Sully_%1$d", 0
