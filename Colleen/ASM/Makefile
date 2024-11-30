@@ -16,16 +16,17 @@ all:		${NAME}
 
 ${NAME}:	${OBJS}
 			${CC} ${LINKER_FLAGS} -o $@ $^
+			rm -f ${OBJS}
 
 exec:		all
 			./${NAME} > ${TMP}
 			diff ${TMP} ${SRCS}
 
 clean:
-			rm -f ${OBJS} ${TMP}
+			rm -f ${OBJS}
 
 fclean:		clean
-			rm -f ${NAME}
+			rm -f ${NAME} ${TMP}
 
 re:			fclean all
 

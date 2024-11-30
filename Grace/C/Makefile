@@ -14,16 +14,17 @@ all:		${NAME}
 
 ${NAME}:	${OBJS}
 			$(CC) $(CFLAGS) ${OBJS} -o ${NAME}
+			rm -f ${OBJS}
 
 exec:		all
 			./${NAME}
 			diff ${TMP} ${SRCS}
 
 clean:
-			rm -f ${OBJS} ${TMP}
+			rm -f ${OBJS}
 
 fclean:		clean
-			rm -f ${NAME}
+			rm -f ${NAME} ${TMP}
 
 re:			fclean all
 
