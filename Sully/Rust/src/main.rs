@@ -43,7 +43,7 @@ define_main!({
 	if Path::new("Sully_5.rs").exists() {
 		nbnext = NUMBER - 1;
 	}
-	if nbnext >= 0 {
+	if NUMBER >= 0 {
 		open_and_write!(nbnext);
 		let sourcefile = format!("./Sully_{0:?}.rs", nbnext);
 		let exec = format!("./Sully_{0:?}", nbnext);
