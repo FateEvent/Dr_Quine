@@ -99,6 +99,7 @@ global var
 var:
 	dd 0
 ```
+[Here](https://filippo.io/linux-syscall-table) is the list of syscalls for Linux.
 
 ### Rust!
 
