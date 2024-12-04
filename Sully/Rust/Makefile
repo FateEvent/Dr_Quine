@@ -11,6 +11,7 @@ all:		${NAME}
 
 ${NAME}:
 			cargo run
+			sleep 0.5
 			diff ${NAME}_4.rs ${addprefix src/, ${SRCS}}
 
 fclean:
