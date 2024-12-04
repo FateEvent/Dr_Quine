@@ -4,7 +4,7 @@ extern fopen, fprintf, sprintf, fclose, system
 ; "¡Aquí no se rinde nadie, carajo!"
 ; Camilo Cienfuegos
 
-%define FORMAT "global main, print, cmd_fct%2$cextern fopen, fprintf, sprintf, fclose, system%2$c%2$c; %3$c¡Aquí no se rinde nadie, carajo!%3$c%2$c; Camilo Cienfuegos%2$c%2$c%%define FORMAT %3$c%1$s%3$c%2$c%2$c%%define DATA section .data%2$c%2$c%%macro SAVE 2%2$cpush %%1%2$cpush %%2%2$c%%endmacro%2$c%2$c%%macro GET 2%2$cpop %%1%2$cpop %%2%2$c%%endmacro%2$c%2$c%%macro open_fct 0%2$copen:%2$cpush rbp%2$cmov rbp, rsp%2$clea rdi, [rel filename]%2$clea rsi, [rel filename_fmt]%2$cmov rdx, r12%2$ccall sprintf WRT ..plt%2$clea rdi, [rel filename]%2$clea rsi, [rel mode]%2$ccall fopen WRT ..plt%2$cleave%2$cret%2$c%%endmacro%2$c%2$c%%macro print_fct 0%2$cprint:%2$cpush rbp%2$cmov rbp, rsp%2$cpush rdi%2$cmov rdi, rax%2$cpush rax%2$clea rsi, [rel fmt]%2$clea rdx, [rel fmt]%2$cmov rcx, 10%2$cmov r8, 34%2$cmov r9, r12%2$cxor rax, rax%2$ccall fprintf WRT ..plt%2$cpop rdi%2$cleave%2$cret%2$c%%endmacro%2$c%2$c%%macro cmd_fct 0%2$ccreate_command:%2$cpush rbp%2$cmov rbp, rsp%2$clea rdi, [rel command]%2$clea rsi, [rel command_fmt]%2$cmov rdx, r12%2$ccall sprintf WRT ..plt%2$clea rdi, [rel command]%2$ccall system WRT ..plt%2$cleave%2$cret%2$c%%endmacro%2$c%2$c%%macro checknum 0%2$cxor r12, r12%2$cmov r12, QWORD [rel number]%2$ccmp r12, 0%2$cjle .end%2$ccmp r12, 5%2$cjne .reduction%2$cSAVE rdi, rsi%2$cSAVE rdx, rcx%2$cmov rax, 21%2$clea rdi, [rel filepath]%2$cxor rsi, rsi%2$csyscall%2$cGET rcx, rdx%2$cGET rsi, rdi%2$ctest rax, rax%2$cjnz .skip_reduc%2$c.reduction:%2$cdec r12%2$c.skip_reduc:%2$c%%endmacro%2$c%2$c%%macro main_fct 0%2$cmain:%2$cpush rbp%2$cmov rbp, rsp%2$ccall checknum%2$cSAVE rdi, rsi%2$cSAVE rdx, rcx%2$ccall open%2$cGET rcx, rdx%2$cGET rsi, rdi%2$ccmp rax, 0%2$cje .end%2$ccall print%2$ccall fclose WRT ..plt%2$cSAVE rdi, rsi%2$cSAVE rdx, rcx%2$ccall create_command%2$cGET rcx, rdx%2$cGET rsi, rdi%2$cleave%2$cret%2$c.end:%2$cleave%2$cret%2$c%%endmacro%2$c%2$c%%macro sully 0%2$copen_fct%2$cprint_fct%2$ccmd_fct%2$cmain_fct%2$c%%endmacro%2$c%2$csection .text%2$c%2$csully%2$c%2$cDATA%2$cfmt: db FORMAT, 0%2$cfilename: times 100 db 0%2$cfilename_fmt: db %3$cSully_%%d.s%3$c, 0%2$cmode: db %3$cw%3$c, 0%2$cnumber: dq %4$d%2$cfilepath: db %3$cSully_5.s%3$c, 0%2$ccommand: times 256 db 0%2$ccommand_fmt: db %3$cnasm -f elf64 Sully_%%1$d.s -o Sully_%%1$d.o && gcc -m64 -o Sully_%%1$d Sully_%%1$d.o && rm Sully_%%1$d.o && chmod +x Sully_%%1$d && ./Sully_%%1$d%3$c, 0"
+%define FORMAT "global main, print, cmd_fct%2$cextern fopen, fprintf, sprintf, fclose, system%2$c%2$c; %3$c¡Aquí no se rinde nadie, carajo!%3$c%2$c; Camilo Cienfuegos%2$c%2$c%%define FORMAT %3$c%1$s%3$c%2$c%2$c%%define DATA section .data%2$c%2$c%%macro SAVE 2%2$cpush %%1%2$cpush %%2%2$c%%endmacro%2$c%2$c%%macro GET 2%2$cpop %%1%2$cpop %%2%2$c%%endmacro%2$c%2$c%%macro open_fct 0%2$copen:%2$cpush rbp%2$cmov rbp, rsp%2$clea rdi, [rel filename]%2$clea rsi, [rel filename_fmt]%2$cmov rdx, r12%2$ccall sprintf WRT ..plt%2$clea rdi, [rel filename]%2$clea rsi, [rel mode]%2$ccall fopen WRT ..plt%2$cleave%2$cret%2$c%%endmacro%2$c%2$c%%macro print_fct 0%2$cprint:%2$cpush rbp%2$cmov rbp, rsp%2$cpush rax%2$cmov rdi, rax%2$cpush rdi%2$clea rsi, [rel fmt]%2$clea rdx, [rel fmt]%2$cmov rcx, 10%2$cmov r8, 34%2$cmov r9, r12%2$cxor rax, rax%2$ccall fprintf WRT ..plt%2$cpop rdi%2$cpop rax%2$ccall fclose WRT ..plt%2$cleave%2$cret%2$c%%endmacro%2$c%2$c%%macro cmd_fct 0%2$ccreate_command:%2$cpush rbp%2$cmov rbp, rsp%2$clea rdi, [rel command]%2$clea rsi, [rel command_fmt]%2$cmov rdx, r12%2$ccall sprintf WRT ..plt%2$clea rdi, [rel command]%2$ccall system WRT ..plt%2$cleave%2$cret%2$c%%endmacro%2$c%2$c%%macro checknum 0%2$cxor r12, r12%2$cmov r12, QWORD [rel number]%2$ccmp r12, 0%2$cjle .end%2$ccmp r12, 5%2$cjne .reduction%2$cSAVE rdi, rsi%2$cSAVE rdx, rcx%2$cmov rax, 21%2$clea rdi, [rel filepath]%2$cxor rsi, rsi%2$csyscall%2$cGET rcx, rdx%2$cGET rsi, rdi%2$ctest rax, rax%2$cjnz .skip_reduc%2$c.reduction:%2$cdec r12%2$c.skip_reduc:%2$c%%endmacro%2$c%2$c%%macro main_fct 0%2$cmain:%2$cpush rbp%2$cmov rbp, rsp%2$ccall checknum%2$cSAVE rdi, rsi%2$cSAVE rdx, rcx%2$ccall open%2$cGET rcx, rdx%2$cGET rsi, rdi%2$ccmp rax, 0%2$cje .end%2$ccall print%2$cSAVE rdi, rsi%2$cSAVE rdx, rcx%2$ccall create_command%2$cGET rcx, rdx%2$cGET rsi, rdi%2$cleave%2$cret%2$c.end:%2$cleave%2$cret%2$c%%endmacro%2$c%2$c%%macro sully 0%2$copen_fct%2$cprint_fct%2$ccmd_fct%2$cmain_fct%2$c%%endmacro%2$c%2$csection .text%2$c%2$csully%2$c%2$cDATA%2$cfmt: db FORMAT, 0%2$cfilename: times 100 db 0%2$cfilename_fmt: db %3$cSully_%%d.s%3$c, 0%2$cmode: db %3$cw%3$c, 0%2$cnumber: dq %4$d%2$cfilepath: db %3$cSully_5.s%3$c, 0%2$ccommand: times 256 db 0%2$ccommand_fmt: db %3$cnasm -f elf64 Sully_%%1$d.s -o Sully_%%1$d.o && gcc -m64 -o Sully_%%1$d Sully_%%1$d.o && rm Sully_%%1$d.o && chmod +x Sully_%%1$d && ./Sully_%%1$d%3$c, 0"
 
 %define DATA section .data
 
@@ -37,9 +37,9 @@ ret
 print:
 push rbp
 mov rbp, rsp
-push rdi
-mov rdi, rax
 push rax
+mov rdi, rax
+push rdi
 lea rsi, [rel fmt]
 lea rdx, [rel fmt]
 mov rcx, 10
@@ -48,6 +48,8 @@ mov r9, r12
 xor rax, rax
 call fprintf WRT ..plt
 pop rdi
+pop rax
+call fclose WRT ..plt
 leave
 ret
 %endmacro
@@ -101,7 +103,6 @@ GET rsi, rdi
 cmp rax, 0
 je .end
 call print
-call fclose WRT ..plt
 SAVE rdi, rsi
 SAVE rdx, rcx
 call create_command
