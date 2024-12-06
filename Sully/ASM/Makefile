@@ -16,7 +16,6 @@ all:		${NAME}
 
 ${NAME}:	${OBJS}
 			${CC} ${LINKER_FLAGS} -o $@ $^
-			rm -f ${OBJS}
 
 exec:		all
 			./${NAME}
