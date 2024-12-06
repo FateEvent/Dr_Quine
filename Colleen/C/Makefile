@@ -7,8 +7,8 @@ TMP = tmp_${NAME}
 CC = clang
 CFLAGS = -Wall -Wextra -Werror
 
-.s.o:
-			$(CC) $(CFLAGS) $< -o ${<:.s=.o}
+.c.o:
+			$(CC) $(CFLAGS) -c $< -o ${<:.c=.o}
 
 all:		${NAME}
 
